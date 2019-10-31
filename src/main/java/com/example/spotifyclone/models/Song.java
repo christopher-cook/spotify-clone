@@ -1,6 +1,7 @@
 package com.example.spotifyclone.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,7 +26,7 @@ public class Song {
     @JoinTable(name = "user_song",
             joinColumns = {@JoinColumn(name = "song_id")},
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<User>  users;
 
     public List<User> getUsers() {
