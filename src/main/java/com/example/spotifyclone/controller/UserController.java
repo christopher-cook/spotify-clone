@@ -38,4 +38,11 @@ public class UserController {
         userService.deleteById(userId);
         return HttpStatus.OK;
     }
+
+
+    @PutMapping("/user/{username}/{songId}")
+    public User addSong(@PathVariable String username, @PathVariable int songId){
+        return userService.addSong(username, songId);
+    }
+
 }
