@@ -9,9 +9,7 @@ public interface SongService {
 
     public Iterable<Song> listSongs();
 
-    Song createUserSongList(String username, Song song);
-
     Song getSong(String username);
 
-    HttpStatus deleteById(Integer userId);
+    void deleteById(Integer userId);
 }

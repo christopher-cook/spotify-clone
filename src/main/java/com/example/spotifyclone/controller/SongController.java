@@ -22,14 +22,11 @@ public class SongController {
     public Iterable<Song> listSongs() {
        return songService.listSongs();
    }
-   @PostMapping("/{username}")
-    public Song createUserSongList(@PathVariable String username, @RequestBody Song song) {
-       return songService.createUserSongList(username, song);
-   }
 
    @DeleteMapping("/{songId}")
    public HttpStatus deleteSongById(@PathVariable Integer userId) {
-       return songService.deleteById(userId);
+       songService.deleteById(userId);
+       return HttpStatus.OK;
    }
 
 }

@@ -1,8 +1,17 @@
 package com.example.spotifyclone.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Table(name = "users")
 public class User {
@@ -15,6 +24,7 @@ public class User {
     @Column(unique = true)
     private String username;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column
     private String password;
 
@@ -25,6 +35,12 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = @JoinColumn(name = "song_id"))
     private List<Song> songs;
+
+    @ManyToOne(cascade = {CascadeType.DETACH,
+            CascadeType.MERGE, CascadeType.REFRESH})
+    @JsonIgnore
+    @JoinColumn(name = "user_role_id", nullable = false)
+    private UserRole userRole;
 
     public List<Song> getSongs() {
         return songs;
@@ -38,6 +54,14 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
     public void setId(Long id) {
@@ -58,5 +82,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Song> addSong(Song song){
+        if(songs == null)
+            songs = new ArrayList<>();
+        songs.add(song);
+
+        return songs;
     }
 }

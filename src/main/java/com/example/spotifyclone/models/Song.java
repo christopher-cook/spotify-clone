@@ -1,5 +1,7 @@
 package com.example.spotifyclone.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(unique=true)
     private String title;
 
     @Column
@@ -21,8 +23,9 @@ public class Song {
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "user_song",
-            joinColumns = {@JoinColumn(name = "course_id")},
+            joinColumns = {@JoinColumn(name = "song_id")},
             inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JsonIgnore
     private List<User>  users;
 
     public List<User> getUsers() {
@@ -56,4 +59,5 @@ public class Song {
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
 }

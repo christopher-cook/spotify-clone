@@ -4,8 +4,10 @@ import com.example.spotifyclone.models.Song;
 import com.example.spotifyclone.models.User;
 import com.example.spotifyclone.repositories.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class SongServiceImpl implements SongService {
@@ -27,19 +29,12 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public Song createUserSongList(String username, Song song) {
-       User user = userService.getUser(username);
-        return songRepository.findSongByUsername(username);
-    }
-
-    @Override
     public Song getSong(String username) {
         return null;
     }
 
     @Override
-    public HttpStatus deleteById(Integer userId) {
+    public void deleteById(Integer userId) {
         songRepository.deleteById(userId);
-        return null;
     }
 }
