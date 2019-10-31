@@ -1,6 +1,7 @@
 package com.example.spotifyclone.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "song")
@@ -16,23 +17,43 @@ public class Song {
     @Column
     private Long length;
 
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH,
+                    CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(name = "user_song",
+            joinColumns = {@JoinColumn(name = "course_id")},
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User>  users;
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Long getLength() {
+        return length;
+    }
+
+    public void setLength(Long length) {
+        this.length = length;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 }
-//need to map songs to user in User Model!
-
-//@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-//public class Course {
-//...
-//    @ManyToMany(fetch = FetchType.LAZY,
-//            cascade = {CascadeType.DETACH,
-//                    CascadeType.MERGE, CascadeType.REFRESH})
-//    @JoinTable(name = "user_course",
-//            joinColumns = {@JoinColumn(name = "course_id")},
-//            inverseJoinColumns = @JoinColumn(name = "user_id"))
-//    private List<User> users;
-//
-//    public List<User> getUsers(){ return users; }
-//
-//    public void setUsers(List<User> users) { this.users = users; }
-//...
-//}
