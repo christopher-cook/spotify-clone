@@ -14,8 +14,8 @@ public class SongController {
     SongService songService;
 
     @PostMapping
-    public Song addSong(@RequestBody Song song) {
-        return songService.addSong(song);
+    public Song createSong(@RequestBody Song song) {
+        return songService.createSong(song);
     }
 
 
@@ -24,9 +24,9 @@ public class SongController {
         return songService.listSongs();
     }
 
-//    @DeleteMapping("/{songId}")
-//    public HttpStatus deleteSong(@PathVariable Integer songId) {
-//        songService.deleteSong(songId);
-//        return HttpStatus.OK;
-//    }
+    @DeleteMapping("/{username}/{songId}")
+    public HttpStatus deleteSong(@PathVariable String username, @PathVariable Integer songId) {
+        songService.deleteSong(username, songId);
+        return HttpStatus.OK;
+    }
 }

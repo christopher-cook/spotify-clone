@@ -25,7 +25,7 @@ public class User {
     @Column
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "user_song",
@@ -45,6 +45,10 @@ public class User {
             songs = new ArrayList<>();
         songs.add(song);
 
+        return songs;
+    }
+
+    public List<Song> getSongs() {
         return songs;
     }
 

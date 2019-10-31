@@ -1,17 +1,23 @@
 package com.example.spotifyclone.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "song")
 public class Song {
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH,
-                    CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "user_song",
-            joinColumns = {@JoinColumn(name = "song_id")},
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+//    @ManyToMany(fetch = FetchType.LAZY,
+//            cascade = {CascadeType.DETACH,
+//                    CascadeType.MERGE, CascadeType.REFRESH})
+//    @JoinTable(name = "user_song",
+//            joinColumns = {@JoinColumn(name = "song_id")},
+//            inverseJoinColumns = @JoinColumn(name = "user_id"))
+//    private List<User> users;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy="songs")
     private List<User> users;
 
     @Id

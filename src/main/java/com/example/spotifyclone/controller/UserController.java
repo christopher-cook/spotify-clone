@@ -1,6 +1,7 @@
 package com.example.spotifyclone.controller;
 
 import com.example.spotifyclone.models.JwtResponse;
+import com.example.spotifyclone.models.Song;
 import com.example.spotifyclone.models.User;
 import com.example.spotifyclone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,12 @@ public class UserController {
 
     @PutMapping("/user/{username}/{songId}")
     public User addSong(@PathVariable String username, @PathVariable int songId){
-        return userService.addSong(username, songId);
+        return userService.addSongById(username, songId);
+    }
+
+    @PostMapping("/user/{username}")
+    public User addSong(@PathVariable String username, @RequestBody Song song){
+        return userService.addSong(username, song);
     }
 
 }

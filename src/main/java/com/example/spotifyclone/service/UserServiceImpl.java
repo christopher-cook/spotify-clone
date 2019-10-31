@@ -113,11 +113,21 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User addSong(String username, int songId) {
+    public User addSongById(String username, int songId) {
         Song song = songRepository.findById(songId).get();
         User user = getUser(username);
         user.addSong(song);
 
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User addSong(String username, Song song) {
+        User user = getUser(username);
+        user.addSong(song);
+//        userRepository.save(user);
+//        return songRepository.save(song);
+        songRepository.save(song);
         return userRepository.save(user);
     }
 
