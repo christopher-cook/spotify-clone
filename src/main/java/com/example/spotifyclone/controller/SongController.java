@@ -3,6 +3,7 @@ package com.example.spotifyclone.controller;
 import com.example.spotifyclone.models.Song;
 import com.example.spotifyclone.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,6 +25,11 @@ public class SongController {
    @PostMapping("/{username}")
     public Song createUserSongList(@PathVariable String username, @RequestBody Song song) {
        return songService.createUserSongList(username, song);
+   }
+
+   @DeleteMapping("/{songId}")
+   public HttpStatus deleteSongById(@PathVariable Integer userId) {
+       return songService.deleteById(userId);
    }
 
 }
