@@ -10,23 +10,24 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/song")
 public class SongController {
 
-   @Autowired
+
+    @Autowired
     SongService songService;
 
-   @PostMapping
-    public Song createSong(@RequestBody Song song){
-       return songService.createSong(song);
-   }
+    @PostMapping
+    public Song createSong(@RequestBody Song song) {
+        return songService.createSong(song);
+    }
 
-   @GetMapping("/list")
-    public Iterable<Song> listSongs() {
-       return songService.listSongs();
-   }
 
-   @DeleteMapping("/{songId}")
-   public HttpStatus deleteSongById(@PathVariable Integer userId) {
-       songService.deleteById(userId);
-       return HttpStatus.OK;
-   }
+    @GetMapping("/list")
+    public Iterable<Song> listSongs(){
+        return songService.listSongs();
+    }
 
+    @DeleteMapping("/{username}/{songId}")
+    public HttpStatus deleteSong(@PathVariable String username, @PathVariable Integer songId) {
+        songService.deleteSong(username, songId);
+        return HttpStatus.OK;
+    }
 }

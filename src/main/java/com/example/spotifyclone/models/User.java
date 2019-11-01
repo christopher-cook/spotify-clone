@@ -1,17 +1,18 @@
 package com.example.spotifyclone.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -28,7 +29,8 @@ public class User {
     @Column
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "user_song",
@@ -38,19 +40,29 @@ public class User {
 
     @ManyToOne(cascade = {CascadeType.DETACH,
             CascadeType.MERGE, CascadeType.REFRESH})
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
     @JoinColumn(name = "user_role_id", nullable = false)
     private UserRole userRole;
+
+    public User() {}
+
+    public List<Song> addSong(Song song){
+        if(songs == null)
+            songs = new ArrayList<>();
+        songs.add(song);
+
+        return songs;
+    }
 
     public List<Song> getSongs() {
         return songs;
     }
 
-    public void setSongs(List<Song> songs) {
-        this.songs = songs;
-    }
+    public void setSongs(List<Song> songs) { this.songs = songs; }
 
-    public User() {}
+    public UserRole getUserRole() { return userRole; }
+
+    public void setUserRole(UserRole userRole) { this.userRole = userRole; }
 
     public Long getId() {
         return id;
