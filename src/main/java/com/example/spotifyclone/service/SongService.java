@@ -1,7 +1,6 @@
 package com.example.spotifyclone.service;
 
 import com.example.spotifyclone.models.Song;
-
 import org.springframework.http.HttpStatus;
 
 public interface SongService {
@@ -13,7 +12,4 @@ public interface SongService {
     Song getSong(String username);
 
     void deleteById(Integer userId);
-  
-    public User getUser(String username);
-
 }

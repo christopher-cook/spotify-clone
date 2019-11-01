@@ -1,8 +1,6 @@
 package com.example.spotifyclone.controller;
 
 import com.example.spotifyclone.models.JwtResponse;
-
-import com.example.spotifyclone.models.Song;
 import com.example.spotifyclone.models.User;
 import com.example.spotifyclone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +26,6 @@ public class UserController {
 //        return "Hello World!";
 //    }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/user/list")
-    public Iterable<User> listUsers() {
-        return userService.listUsers();
-    }
 
 //    @PostMapping("/signup")
 //    public User createUser(@RequestBody User newUser) {
@@ -44,15 +37,10 @@ public class UserController {
         return ResponseEntity.ok(new JwtResponse(userService.createUser(newUser)));
     }
 
-//    @GetMapping("/login/{username}/{password}")
-//    public User login(@PathVariable String username, @PathVariable String password) {
-//        return userService.login(username, password);
-//    }
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
-    return ResponseEntity.ok(new JwtResponse(userService.login(user)));
-}
-
+        return ResponseEntity.ok(new JwtResponse(userService.login(user)));
+    }
 
 
     @DeleteMapping("/user/{userId}")
@@ -61,14 +49,13 @@ public class UserController {
         return HttpStatus.OK;
     }
 
-
     @PutMapping("/user/{username}/{songId}")
     public User addSong(@PathVariable String username, @PathVariable int songId){
-        return userService.addSongById(username, songId);
+        return userService.addSong(username, songId);
     }
 
-    @PostMapping("/user/{username}")
-    public User addSong(@PathVariable String username, @RequestBody Song song){
-        return userService.addSong(username, song);
+    @DeleteMapping("/user/{username}/{songId}")
+    public User deleteSong(@PathVariable String username, @PathVariable int songId) {
+        return userService.deleteSong(username, songId);
     }
 }
