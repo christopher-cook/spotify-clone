@@ -1,15 +1,18 @@
 package com.example.spotifyclone.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 //@JsonIdentityInfo(
 //        generator = ObjectIdGenerators.PropertyGenerator.class,
 //        property = "id")
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -22,8 +25,10 @@ public class User {
     @Column(unique = true)
     private String username;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column
     private String password;
+
 
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {CascadeType.DETACH,
@@ -35,6 +40,7 @@ public class User {
 
     @ManyToOne(cascade = {CascadeType.DETACH,
             CascadeType.MERGE, CascadeType.REFRESH})
+
     @JoinColumn(name = "user_role_id", nullable = false)
     private UserRole userRole;
 
@@ -62,6 +68,14 @@ public class User {
         return id;
     }
 
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -80,5 +94,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Song> addSong(Song song){
+        if(songs == null)
+            songs = new ArrayList<>();
+        songs.add(song);
+
+        return songs;
     }
 }

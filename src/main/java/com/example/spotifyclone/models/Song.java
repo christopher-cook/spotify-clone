@@ -8,6 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "song")
 public class Song {
+  
 //    @ManyToMany(fetch = FetchType.LAZY,
 //            cascade = {CascadeType.DETACH,
 //                    CascadeType.MERGE, CascadeType.REFRESH})
@@ -25,6 +26,7 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
     @Column
     private String title;
 
@@ -36,6 +38,7 @@ public class Song {
     public List<User> getUsers(){ return users; }
 
     public void setUsers(List<User> users) { this.users = users; }
+
 
     public int getId() {
         return id;
@@ -52,7 +55,6 @@ public class Song {
     public void setTitle(String title) {
         this.title = title;
     }
-
     public Double getLength() {
         return length;
     }
@@ -61,3 +63,4 @@ public class Song {
         this.length = length;
     }
 }
+

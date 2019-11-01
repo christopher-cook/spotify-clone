@@ -1,6 +1,7 @@
 package com.example.spotifyclone.controller;
 
 import com.example.spotifyclone.models.JwtResponse;
+
 import com.example.spotifyclone.models.Song;
 import com.example.spotifyclone.models.User;
 import com.example.spotifyclone.service.UserService;
@@ -13,13 +14,19 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserController {
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/user/list")
+    public Iterable<User> listUsers(){
+        return userService.listUsers();
+    }
+
     @Autowired
     private UserService userService;
-
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello World!";
-    }
+//
+//    @GetMapping("/hello")
+//    public String hello() {
+//        return "Hello World!";
+//    }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/user/list")
@@ -46,6 +53,8 @@ public class UserController {
     return ResponseEntity.ok(new JwtResponse(userService.login(user)));
 }
 
+
+
     @DeleteMapping("/user/{userId}")
     public HttpStatus deleteUserById(@PathVariable Long userId) {
         userService.deleteById(userId);
@@ -62,5 +71,4 @@ public class UserController {
     public User addSong(@PathVariable String username, @RequestBody Song song){
         return userService.addSong(username, song);
     }
-
 }

@@ -1,15 +1,19 @@
 package com.example.spotifyclone.service;
 
 import com.example.spotifyclone.models.Song;
-import com.example.spotifyclone.models.User;
+
+import org.springframework.http.HttpStatus;
 
 public interface SongService {
 
-    public User getUser(String username);
+    public Song createSong(Song song);
 
     public Iterable<Song> listSongs();
 
-    public Integer deleteSong(String username, int songId);
+    Song getSong(String username);
 
-    public Song createSong(Song song);
+    void deleteById(Integer userId);
+  
+    public User getUser(String username);
+
 }

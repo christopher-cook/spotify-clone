@@ -6,8 +6,8 @@ import com.example.spotifyclone.repositories.SongRepository;
 import com.example.spotifyclone.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.spotifyclone.models.Song;
+
 
 @Service
 public class SongServiceImpl implements SongService {
@@ -21,6 +21,7 @@ public class SongServiceImpl implements SongService {
     @Override
     public User getUser(String username) {
         return userRepository.findByUsername(username);
+
     }
 
     @Override
@@ -29,6 +30,7 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
+
     public Integer deleteSong(String username, int songId) {
         User user = getUser(username);
         Song song = songRepository.findById(songId).get();
@@ -41,5 +43,14 @@ public class SongServiceImpl implements SongService {
     @Override
     public Song createSong(Song song) {
         return songRepository.save(song);
+
+    public Song getSong(String username) {
+        return null;
+    }
+
+    @Override
+    public void deleteById(Integer userId) {
+        songRepository.deleteById(userId);
+
     }
 }

@@ -2,6 +2,7 @@ package com.example.spotifyclone.config;
 
 import com.example.spotifyclone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -16,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+
 
 //    @Override
 //    public void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -30,9 +33,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
+
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService);
     }
+
 
     @Bean("encoder")
     public PasswordEncoder encoder() {
@@ -53,5 +58,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
 
-
 }
+
