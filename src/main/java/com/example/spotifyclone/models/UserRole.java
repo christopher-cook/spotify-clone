@@ -1,7 +1,6 @@
 package com.example.spotifyclone.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -14,8 +13,6 @@ import java.util.List;
 @Table(name = "user_role")
 public class UserRole {
 
-
-    @JsonIgnore
     @OneToMany(mappedBy = "userRole",
             cascade = CascadeType.ALL)
     private List<User> users;

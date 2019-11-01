@@ -1,6 +1,7 @@
 package com.example.spotifyclone.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,37 +9,29 @@ import java.util.List;
 @Entity
 @Table(name = "song")
 public class Song {
-  
-//    @ManyToMany(fetch = FetchType.LAZY,
-//            cascade = {CascadeType.DETACH,
-//                    CascadeType.MERGE, CascadeType.REFRESH})
-//    @JoinTable(name = "user_song",
-//            joinColumns = {@JoinColumn(name = "song_id")},
-//            inverseJoinColumns = @JoinColumn(name = "user_id"))
-//    private List<User> users;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy="songs")
-    private List<User> users;
-
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
-    @Column
+    @Column(unique=true)
     private String title;
 
     @Column
-    private Double length;
+    private Long length;
 
-    public Song() { }
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH,
+                    CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(name = "user_song",
+            joinColumns = {@JoinColumn(name = "song_id")},
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<User>  users;
 
-    public List<User> getUsers(){ return users; }
-
-    public void setUsers(List<User> users) { this.users = users; }
-
+    public List<User> getUsers() {
+        return users;
+    }
 
     public int getId() {
         return id;
@@ -55,12 +48,17 @@ public class Song {
     public void setTitle(String title) {
         this.title = title;
     }
-    public Double getLength() {
+
+    public Long getLength() {
         return length;
     }
 
-    public void setLength(Double length) {
+    public void setLength(Long length) {
         this.length = length;
     }
-}
 
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+}
