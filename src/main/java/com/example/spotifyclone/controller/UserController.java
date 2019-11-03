@@ -46,12 +46,12 @@ public class UserController {
     return ResponseEntity.ok(new JwtResponse(userService.login(user)));
 }
 
+//how to test void methods in mockito?
     @DeleteMapping("/user/{userId}")
     public HttpStatus deleteUserById(@PathVariable Long userId) {
         userService.deleteById(userId);
         return HttpStatus.OK;
     }
-
 
     @PutMapping("/user/{username}/{songId}")
     public User addSong(@PathVariable String username, @PathVariable int songId){

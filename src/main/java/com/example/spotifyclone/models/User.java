@@ -13,7 +13,6 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
-    //test comment to delete
 
     @Id
     @Column
