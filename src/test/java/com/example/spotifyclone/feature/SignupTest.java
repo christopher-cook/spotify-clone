@@ -67,12 +67,12 @@ public class SignupTest {
     }
 
     @Test
-    @WithMockUser(username = "chris", password = "pass", roles = {"ADMIN"})
+    @WithMockUser(username = "rando", password = "testPass", roles = {"ADMIN"})
     public void b_delete_User_Success() throws Exception {
         this.user = userRepository.findByUsername("chris");
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .delete("/user/"+user.getId());
+                .delete("/user/" + user.getId());
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().isOk());

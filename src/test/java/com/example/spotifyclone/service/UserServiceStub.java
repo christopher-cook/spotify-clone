@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceStub implements UserService{
 
-    private UserController userController;
+//    private UserController userController;
 
     @Override
     public Iterable<User> listUsers() {
@@ -19,10 +19,10 @@ public class UserServiceStub implements UserService{
     }
 
     @Override
-    public void deleteById(Long userId) {
+    public User deleteById(Long userId) {
 
+        return null;
     }
-
     @Override
     public User addSongById(String username, int songId) {
         return null;
@@ -52,4 +52,6 @@ public class UserServiceStub implements UserService{
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return null;
     }
+
+
 }

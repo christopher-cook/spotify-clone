@@ -6,7 +6,6 @@ import com.example.spotifyclone.models.User;
 import com.example.spotifyclone.models.UserRole;
 import com.example.spotifyclone.repositories.SongRepository;
 import com.example.spotifyclone.repositories.UserRepository;
-import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -108,8 +107,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void deleteById(Long userId) {
+    public User deleteById(Long userId) {
         userRepository.deleteById(userId);
+        return null;
     }
 
     @Override
