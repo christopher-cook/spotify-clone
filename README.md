@@ -5,7 +5,7 @@
 
 - All of your design decision / reasons behind each decision:
 
-![ERD](https://github.com/christopher-cook/spotify-clone/blob/master/Spotify%20Clone.jpeg)
+![ERD](https://github.com/christopher-cook/spotify-clone/blob/master/Spotify%20Clone%20ERD.jpeg)
 
   - **User to User Role (Many to one relationship)**
     - One user can only have one role but one role can belong to many users.
@@ -23,4 +23,5 @@
   - Setting up the models and relationship mapping initially was also a bit confusing because we ran into issues with 
   recursive loops which we resolved with @JsonIgnore.
 
-- Which part you enjoyed working on the most.
+- Which part you enjoyed working on the most:
+  - We enjoyed having the opportunity to review and reinforce some of the ideas and concepts learned in Spring.
