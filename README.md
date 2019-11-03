@@ -5,7 +5,7 @@
 
 - All of your design decision / reasons behind each decision:
 
-![alt text](Spotify Clone.jpeg)
+![ERD](https://github.com/christopher-cook/spotify-clone/blob/master/Spotify%20Clone.jpeg)
 
   - **User to User Role (Many to one relationship)**
     - One user can only have one role but one role can belong to many users.
