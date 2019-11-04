@@ -3,12 +3,9 @@ package com.example.spotifyclone.service;
 import com.example.spotifyclone.controller.UserController;
 import com.example.spotifyclone.models.Song;
 import com.example.spotifyclone.models.User;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-@RunWith(MockitoJUnitRunner.class)
 public class UserServiceStub implements UserService{
 
 //    private UserController userController;

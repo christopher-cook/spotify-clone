@@ -45,7 +45,7 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody User user) {
     return ResponseEntity.ok(new JwtResponse(userService.login(user)));
 }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/user/{userId}")
     public HttpStatus deleteUserById(@PathVariable Long userId) {
         userService.deleteById(userId);
