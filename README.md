@@ -22,7 +22,6 @@
   - Setting up the models and relationship mapping initially was also a bit confusing as we ran into a 
   recursive loop issue which we resolved utilizing @JsonIgnore.
   
-  - Lost about a half a day of productivity due to a IDE related issue preventing use of my MBP.
 
 ### Which part you enjoyed working on the most:
   - We enjoyed having the opportunity to review and reinforce some of the ideas and concepts learned in Spring.
