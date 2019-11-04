@@ -16,8 +16,7 @@
   - After breaking Github repo was able to prevent further merge conflicts.
 
 ### Challenges faced:
-  - Testing was a bit difficult with regards to void methods. We also ran into a bit of an issue with authorization during   
-  testing as our test would fail without mocking the user (@WithMockUser).
+  - Testing was a bit difficult with regards to void methods. We also ran into a bit of an issue with authorization during testing as our test would fail without mocking the user (@WithMockUser).
 
   - Setting up the models and relationship mapping initially was also a bit confusing as we ran into a 
   recursive loop issue which we resolved utilizing @JsonIgnore.
