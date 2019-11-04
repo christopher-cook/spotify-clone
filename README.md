@@ -1,9 +1,7 @@
 # spotify-clone
+---
 
-- A link to the GitHub repo:
-  - https://github.com/christopher-cook/spotify-clone
-
-- All of your design decision / reasons behind each decision:
+### Design choices:
 
 ![ERD](https://github.com/christopher-cook/spotify-clone/blob/master/Spotify%20Clone%20ERD.jpeg)
 
@@ -13,15 +11,20 @@
   - **User to Songs (Many to many relationship)**
     - Many songs can belong to many users.
   
-- What went right:
-  - We were able to collaboratively through issues.
+### What went right:
+  - We were able to collaborate through issues.
+  - After breaking Github repo was able to prevent further merge conflicts.
 
-- Challenges you faced:
-  - Testing was a bit difficult with testing void methods. We also ran into a bit of an issue with authorization during   
+### Challenges faced:
+  - Testing was a bit difficult with regards to void methods. We also ran into a bit of an issue with authorization during   
   testing as our test would fail without mocking the user (@WithMockUser).
 
-  - Setting up the models and relationship mapping initially was also a bit confusing because we ran into issues with 
-  recursive loops which we resolved with @JsonIgnore.
+  - Setting up the models and relationship mapping initially was also a bit confusing as we ran into a 
+  recursive loop issue which we resolved utilizing @JsonIgnore.
 
-- Which part you enjoyed working on the most:
+### Which part you enjoyed working on the most:
   - We enjoyed having the opportunity to review and reinforce some of the ideas and concepts learned in Spring.
+  - Again, despite not resolving all tests the mock/injectmocks are finally clearing up a bit.
+  --- 
+  
+  [Github Repo](https://github.com/christopher-cook/spotify-clone)
